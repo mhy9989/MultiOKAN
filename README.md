@@ -66,7 +66,7 @@ python/deepspeed main_DON.py
 python/deepspeed main.py
 ```
 
-**For inference **
+**For inference**
 **Comment out or remove** the training calls (`model.train()` / `modelDON.train()`) in `main_AE.py` and `main_DON.py`, then run the scripts **with the same commands as training**.
 
 ## Data Format
