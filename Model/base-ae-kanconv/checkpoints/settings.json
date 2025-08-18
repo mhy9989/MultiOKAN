@@ -1,0 +1,92 @@
+{
+  "setup_config":{
+    "seed": 9989,
+    "diff_seed": false,
+    "per_device_train_batch_size": 128,
+    "per_device_valid_batch_size": 128,
+    "gradient_accumulation_steps": 1,
+    "num_workers": 4,
+    "method": "l-deepokan",
+    "max_epoch": 1000,
+    "lossfun": "MSE",
+    "load_from": false,
+    "if_continue": false,
+    "regularization": 0.0,
+    "if_display_method_info": true,
+    "mem_log": false,
+    "empty_cache": false,
+    "metrics":["MSE", "RMSE", "MAE", "MRE", "SSIM"],
+    "fps": true,
+    "val_metrics": true
+  },
+  "data_config": {
+    "org_path": "../dataset/dataset-new.npy",
+    "mesh_path": "../dataset/mesh.npy",
+    "data_num": 1000,
+    "data_width": 128,
+    "data_height": 128,
+    "data_mean": [[0.27425214273052645]],
+    "data_std": [[0.252671654366357]],
+    "data_max": [[0.5899884011089301]],
+    "data_min": [[0]],
+    "data_type": ["solid"],
+    "data_select":[0],
+    "data_scaler": ["MinMax"],
+    "total_after": 100,
+    "data_after_num": 10,
+    "dt": 0.01,
+    "train_seed":9989,
+    "train_ratio": 0.9,
+    "valid_ratio": 0.0,
+    "test_ratio": 0.1,
+    "t_norm": "Standard"
+  },
+  "noise_config":{
+    "noise_scale": 0.1,
+    "sample_ratio": 1,
+    "mask_ratio": 0.0,
+    "samlpes_seed": 9989,
+    "mask_seed": 9989,
+    "noise_seed": 9989
+  },
+  "optim_config": {
+    "optim": "adamw",
+    "lr": 2e-4,
+    "filter_bias_and_bn": false,
+    "log_step": 1,
+    "opt_eps": null,
+    "opt_betas": null,
+    "momentum": 0.9,
+    "weight_decay": 1e-4,
+    "early_stop_epoch": -1
+  },
+  "sched_config": {
+    "sched": "onecycle",
+    "decay_rate": 0.1,
+    "decay_epoch": 300,
+    "lr_k_decay": 1.0,
+    "final_div_factor": 1e4
+  },
+  "model_config": {
+    "model_type": "AE_conv_multi",
+    "AE_channels":[26, 20, 14, 10],
+    "layer_type": "gram",
+    "latent_dim":144,
+    "actfun":"silu",
+    "mid_conv": false,
+    "tanh": false,
+    "norm": "Batch",
+    "kernel_size": 3,
+    "stride": 2,
+    "kan_config":{
+      "degrees": 3,
+      "convkan": "kagn",
+      "init_l": "km"
+    }
+  },
+  "ds_config":{
+    "offload": false,
+    "zero_stage": 0,
+    "gradient_accumulation_steps": 1
+}
+}

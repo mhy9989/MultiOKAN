@@ -1,0 +1,89 @@
+{
+  "setup_config":{
+    "seed": 9989,
+    "diff_seed": false,
+    "per_device_train_batch_size": 8,
+    "per_device_valid_batch_size": 8,
+    "gradient_accumulation_steps": 1,
+    "num_workers": 4,
+    "method": "l-deepokan",
+    "max_epoch": 1000,
+    "lossfun": "MSE",
+    "load_from": false,
+    "if_continue": false,
+    "regularization": 0.0,
+    "if_display_method_info": true,
+    "mem_log": false,
+    "empty_cache": false,
+    "metrics":["MSE", "RMSE", "MAE", "MRE", "SSIM"],
+    "fps": true,
+    "val_metrics": true
+  },
+  "data_config": {
+    "org_path": "../dataset/dataset-new.npy",
+    "mesh_path": "../dataset/mesh.npy",
+    "lam_path": "./Model/base-don-kanconv/data/AE_lam.npy",
+    "data_num": 1000,
+    "data_width": 128,
+    "data_height": 128,
+    "data_mean": [[0.27425214273052645], [-0.0025055415566470896]],
+    "data_std": [[0.252671654366357], [1.7822391035537055]],
+    "data_max": [[0.5899884011089301], [7.93814754486084]],
+    "data_min": [[0], [-5.659793376922607]],
+    "data_scaler": ["MinMax", "Standard"],
+    "data_type": ["solid"],
+    "data_select": [0],
+    "total_after": 100,
+    "data_after_num": 10,
+    "dt": 0.01,
+    "train_seed":9989,
+    "train_ratio": 0.9,
+    "valid_ratio": 0.0,
+    "test_ratio": 0.1,
+    "t_norm": "Standard"
+  },
+  "optim_config": {
+    "optim": "adamw",
+    "lr": 2e-4,
+    "filter_bias_and_bn": false,
+    "log_step": 1,
+    "opt_eps": null,
+    "opt_betas": null,
+    "momentum": 0.9,
+    "weight_decay": 1e-4,
+    "early_stop_epoch": -1
+  },
+  "sched_config": {
+    "sched": "step",
+    "decay_rate": 0.5,
+    "decay_epoch": 200,
+    "lr_k_decay": 1.0,
+    "final_div_factor": 1e4
+  },
+  "model_config": {
+    "model_type": "DON_conv_multi",
+    "latent_dim":144,
+
+    "branch_channels":[5,5,5,5,5,5],
+    "kernel_size": 3,
+    "norm": ["Batch", false],
+    "conv_type": "kagn",
+    "layer_type": "gram",
+    "branch_actfun":"silu",
+
+    "trunk_layers":[96,96,96,96,96,96],
+    "trunk_type": "gram",
+    "trunk_actfun": "silu",
+
+    "p": 8,
+    "kan_config":{
+      "degrees": 3,
+      "init_cl": "km"
+    }
+  },
+  "ds_config":{
+    "offload": false,
+    "zero_stage": 0,
+    "gradient_accumulation_steps": 1
+}
+}
