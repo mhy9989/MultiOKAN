@@ -73,7 +73,7 @@ python/deepspeed main.py
 
 - **Flow fields (`.npy`)**
    A 5-D NumPy array with shape
-   `(**num**, **data_time**, **features/phases**, **height**, **width**)`.
+   `(num, data_time, features/phases, height, width)`.
   - `data_time`: time-ordered sequence from `t0` to `t_end` (index `0` is the initial field).
   - **Path**: set in `settings.json` → `data_config.org_path`.
 - **Mesh (`.npy`)**
